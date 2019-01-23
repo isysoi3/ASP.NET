@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<grammar xmlns="http://www.w3.org/2001/06/grammar"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://www.w3.org/2001/06/grammar
+                             http://www.w3.org/TR/speech-grammar/grammar.xsd"
+         xml:lang="en-US"
+         version="1.0"
+         mode="voice"
+         tag-format="semantics-ms/1.0"
+         root="MoveCommand">
+
+  <rule id="MoveCommand" scope="public">
+    <example>drive forward</example>
+    <example>turn left</example>
+
+    <one-of>
+      <item>
+        <ruleref uri="#TypesOfStop"/>
+        <tag>$.TypeOfMoving = $TypesOfStop</tag>
+      </item>
+      <item>
+        <ruleref uri="#TypesOfMoving"/>
+        <tag>$.TypeOfMoving = $TypesOfMoving</tag>
+        <ruleref uri="#MovingDirection"/>
+        <tag>$.MovingDirection = $MovingDirection</tag>
+      </item>
+    </one-of>
+  </rule>
+
+  <rule id="TypesOfStop" scope="public">
+    <one-of>
+      <item>
+        stop<tag>$ = "Stop"</tag>
+      </item>
+      <item>
+        cancel<tag>$ = "Stop"</tag>
+      </item>
+      <item>
+        abort<tag>$ = "Stop"</tag>
+      </item>
+      <item>
+        halt<tag>$ = "Stop"</tag>
+      </item>
+    </one-of>    
+  </rule>
+  
+  <rule id="TypesOfMoving" scope="public">
+    <one-of>
+      <item>
+        dance<tag>$ = "Dance"</tag>
+      </item>
+      <item>
+        go<tag>$ = "Dance"</tag>
+      </item>
+    </one-of>
+  </rule>
+
+  <rule id="MovingDirection" scope="public">
+    <one-of>
+      <item>
+        one<tag>$ = "One"</tag>
+      </item>
+      <item>
+        two<tag>$ = "Two"</tag>
+      </item>
+      <item>
+        three<tag>$ = "Three"</tag>
+      </item>
+      <item>
+        four<tag>$ = "Four"</tag>
+      </item>
+      <item>
+        five<tag>$ = "Five"</tag>
+      </item>
+    </one-of>
+  </rule>
+
+</grammar>
